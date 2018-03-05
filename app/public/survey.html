@@ -1,0 +1,205 @@
+<!doctype html>
+
+
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Friend Finder Survey</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1 class="display-4">Friend Finder Survey</h1>
+      <hr class="my-4">
+    </div>
+    <!-- Intro -->
+    <label for="name">Name *</label>
+    <input type="text" name="name" id="friendName" class="Input form-control"> <br>
+    <label for="photo">Your photo (link required)</label>
+    <input type="text" name="photo" id="photo" class="Input form-control"> <br>
+
+    <!-- Questions -->
+    <div class="card">
+      <div class="card-body">
+        <h4>Select an option from a scale of 1 - 5, 1 being you 'don't agree', 5 being 'strongly agree'</h4>
+        <div class="col-sm-6">
+
+
+          <div class="form-group">
+            <label for="Question 1">Doing dishes is relaxing</label>
+            <select single class="form-control" class="chosen-response" id="q1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Question 2">I can drive 5 hours non-stop, no problem</label>
+            <select single class="form-control" class="chosen-response" id="q2">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Question 3">I love to spend the night in by myself most of the time</label>
+            <select single class="form-control" class="chosen-response" id="q3">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Question 4">I can't wait to have children/more children</label>
+            <select single class="form-control" class="chosen-response" id="q4">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Question 5">I believe people should drive slowly and carefully</label>
+            <select single class="form-control" class="chosen-response" id="q5">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Question 6">First impressions can be changed</label>
+            <select single class="form-control" class="chosen-response" id="q6">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Question 7">Running is good therapy</label>
+            <select single class="form-control" class="chosen-response" id="q7">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+          </div>
+
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" id="matchBtn" href="#" role="button">Match</a>
+          </p>
+
+          <!-- Modal -->
+
+          <div id="resultsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"></button>
+                  <h2 class="modal-title"><strong>Here's your match</strong></h2>
+                </div>
+                <div class="modal-body">
+                  <div class="col-xs-12 col-md-6">
+                    <h2 id="matchName"></h2>
+                    <img id="matchPic" src="http://via.placeholder.com/150x150" alt="" class="img-responsive">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Game Logic -->
+
+          <script type="text/javascript">
+            $(".matchBtn").on("click", function(event) {
+                  event.preventDefault();
+
+                  // Here we grab the form elements
+                  var newFriend = {
+                    friendName: $("#friendName").val().trim(),
+                    photo: $("#photo").val().trim(),
+                    scores[]
+                  };
+                  console.log(newRFriend);
+
+                  // Post form elements
+                  var currentURL = window.location.origin;
+
+                  $.post(currentURL + "/api/friends", newFriend,
+                    function(data) {
+                      // Clear the form when submitting
+                      $("#friendName").val("");
+                      $("#photo").val("")
+                    });
+
+                  // Match the friends
+                  var currentFriendScore = [];
+                  $('.chosenResponse').each(function() {
+                    currentFriendScore.push(parseInt($(this).val())); // Parse Input Value as integer
+                  })
+
+                  newFriend.scores = currentFriendScore;
+
+
+
+
+                  //
+                  // // Get survey responses
+                  // var friendsArr = [];
+                  // $(.
+                  //     "chosen-response").each(function() {
+                  //     scoresArr.push(parseInt($(this).val))
+                  //   })
+                  //   .promise().done(function() {
+                  //
+                  //
+                  //
+                  //     }
+          </script>
+
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
