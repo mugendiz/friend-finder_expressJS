@@ -1,11 +1,10 @@
 // Dependencies
 var express = require("express");
-var bodyParser = require("      ");
+var bodyParser = require("body-parser");
 var path = require("path");
 
 var htmlRoute = require(path.join(__dirname, "app/routing", "htmlRoutes.js" ))
 var apiRoute = require(path.join(__dirname, "app/routing", "apiRoutes.js" ))
-
 
 var PORT = process.env.PORT || 3030;
 var app = express();
